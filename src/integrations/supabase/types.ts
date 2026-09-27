@@ -14,16 +14,378 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      deposits: {
+        Row: {
+          admin_note: string | null
+          amount: number
+          created_at: string
+          id: string
+          phone_number: string
+          reference: string
+          status: Database["public"]["Enums"]["payout_status"]
+          user_id: string
+        }
+        Insert: {
+          admin_note?: string | null
+          amount: number
+          created_at?: string
+          id?: string
+          phone_number: string
+          reference?: string
+          status?: Database["public"]["Enums"]["payout_status"]
+          user_id: string
+        }
+        Update: {
+          admin_note?: string | null
+          amount?: number
+          created_at?: string
+          id?: string
+          phone_number?: string
+          reference?: string
+          status?: Database["public"]["Enums"]["payout_status"]
+          user_id?: string
+        }
+        Relationships: []
+      }
+      notifications: {
+        Row: {
+          created_at: string
+          id: string
+          message: string
+          read: boolean
+          title: string
+          type: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          message?: string
+          read?: boolean
+          title: string
+          type?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          message?: string
+          read?: boolean
+          title?: string
+          type?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      profiles: {
+        Row: {
+          avatar_url: string | null
+          balance: number
+          created_at: string
+          email: string | null
+          full_name: string
+          id: string
+          mpesa_number: string | null
+          pending_balance: number
+          phone: string | null
+          referral_code: string
+          referred_by: string | null
+          status: Database["public"]["Enums"]["account_status"]
+          total_earned: number
+          total_withdrawn: number
+          updated_at: string
+        }
+        Insert: {
+          avatar_url?: string | null
+          balance?: number
+          created_at?: string
+          email?: string | null
+          full_name?: string
+          id: string
+          mpesa_number?: string | null
+          pending_balance?: number
+          phone?: string | null
+          referral_code: string
+          referred_by?: string | null
+          status?: Database["public"]["Enums"]["account_status"]
+          total_earned?: number
+          total_withdrawn?: number
+          updated_at?: string
+        }
+        Update: {
+          avatar_url?: string | null
+          balance?: number
+          created_at?: string
+          email?: string | null
+          full_name?: string
+          id?: string
+          mpesa_number?: string | null
+          pending_balance?: number
+          phone?: string | null
+          referral_code?: string
+          referred_by?: string | null
+          status?: Database["public"]["Enums"]["account_status"]
+          total_earned?: number
+          total_withdrawn?: number
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "profiles_referred_by_fkey"
+            columns: ["referred_by"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      referrals: {
+        Row: {
+          created_at: string
+          id: string
+          referred_user_id: string
+          referrer_id: string
+          reward: number
+          status: Database["public"]["Enums"]["txn_status"]
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          referred_user_id: string
+          referrer_id: string
+          reward?: number
+          status?: Database["public"]["Enums"]["txn_status"]
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          referred_user_id?: string
+          referrer_id?: string
+          reward?: number
+          status?: Database["public"]["Enums"]["txn_status"]
+        }
+        Relationships: []
+      }
+      task_submissions: {
+        Row: {
+          created_at: string
+          id: string
+          review_note: string | null
+          reviewed_at: string | null
+          reviewed_by: string | null
+          status: Database["public"]["Enums"]["submission_status"]
+          submission: string
+          task_id: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          review_note?: string | null
+          reviewed_at?: string | null
+          reviewed_by?: string | null
+          status?: Database["public"]["Enums"]["submission_status"]
+          submission?: string
+          task_id: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          review_note?: string | null
+          reviewed_at?: string | null
+          reviewed_by?: string | null
+          status?: Database["public"]["Enums"]["submission_status"]
+          submission?: string
+          task_id?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "task_submissions_task_id_fkey"
+            columns: ["task_id"]
+            isOneToOne: false
+            referencedRelation: "tasks"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      tasks: {
+        Row: {
+          category: Database["public"]["Enums"]["task_category"]
+          created_at: string
+          deadline: string | null
+          description: string
+          estimated_minutes: number
+          id: string
+          instructions: string
+          is_active: boolean
+          requirements: string | null
+          reward: number
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          category?: Database["public"]["Enums"]["task_category"]
+          created_at?: string
+          deadline?: string | null
+          description?: string
+          estimated_minutes?: number
+          id?: string
+          instructions?: string
+          is_active?: boolean
+          requirements?: string | null
+          reward?: number
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          category?: Database["public"]["Enums"]["task_category"]
+          created_at?: string
+          deadline?: string | null
+          description?: string
+          estimated_minutes?: number
+          id?: string
+          instructions?: string
+          is_active?: boolean
+          requirements?: string | null
+          reward?: number
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      transactions: {
+        Row: {
+          amount: number
+          created_at: string
+          description: string
+          id: string
+          reference: string
+          status: Database["public"]["Enums"]["txn_status"]
+          type: Database["public"]["Enums"]["txn_type"]
+          user_id: string
+        }
+        Insert: {
+          amount: number
+          created_at?: string
+          description?: string
+          id?: string
+          reference?: string
+          status?: Database["public"]["Enums"]["txn_status"]
+          type: Database["public"]["Enums"]["txn_type"]
+          user_id: string
+        }
+        Update: {
+          amount?: number
+          created_at?: string
+          description?: string
+          id?: string
+          reference?: string
+          status?: Database["public"]["Enums"]["txn_status"]
+          type?: Database["public"]["Enums"]["txn_type"]
+          user_id?: string
+        }
+        Relationships: []
+      }
+      user_roles: {
+        Row: {
+          created_at: string
+          id: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          user_id?: string
+        }
+        Relationships: []
+      }
+      withdrawals: {
+        Row: {
+          admin_note: string | null
+          amount: number
+          created_at: string
+          fee: number
+          id: string
+          mpesa_number: string
+          net_amount: number
+          processed_at: string | null
+          processed_by: string | null
+          reference: string
+          status: Database["public"]["Enums"]["payout_status"]
+          user_id: string
+        }
+        Insert: {
+          admin_note?: string | null
+          amount: number
+          created_at?: string
+          fee?: number
+          id?: string
+          mpesa_number: string
+          net_amount?: number
+          processed_at?: string | null
+          processed_by?: string | null
+          reference?: string
+          status?: Database["public"]["Enums"]["payout_status"]
+          user_id: string
+        }
+        Update: {
+          admin_note?: string | null
+          amount?: number
+          created_at?: string
+          fee?: number
+          id?: string
+          mpesa_number?: string
+          net_amount?: number
+          processed_at?: string | null
+          processed_by?: string | null
+          reference?: string
+          status?: Database["public"]["Enums"]["payout_status"]
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      has_role: {
+        Args: {
+          _role: Database["public"]["Enums"]["app_role"]
+          _user_id: string
+        }
+        Returns: boolean
+      }
     }
     Enums: {
-      [_ in never]: never
+      account_status: "active" | "suspended"
+      app_role: "admin" | "user"
+      payout_status:
+        | "pending"
+        | "processing"
+        | "completed"
+        | "failed"
+        | "rejected"
+      submission_status: "submitted" | "approved" | "rejected"
+      task_category:
+        | "surveys"
+        | "social_media"
+        | "data_entry"
+        | "research"
+        | "content"
+        | "simple"
+      txn_status: "pending" | "completed" | "failed" | "rejected"
+      txn_type: "task_reward" | "withdrawal" | "deposit" | "referral_bonus"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +512,27 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      account_status: ["active", "suspended"],
+      app_role: ["admin", "user"],
+      payout_status: [
+        "pending",
+        "processing",
+        "completed",
+        "failed",
+        "rejected",
+      ],
+      submission_status: ["submitted", "approved", "rejected"],
+      task_category: [
+        "surveys",
+        "social_media",
+        "data_entry",
+        "research",
+        "content",
+        "simple",
+      ],
+      txn_status: ["pending", "completed", "failed", "rejected"],
+      txn_type: ["task_reward", "withdrawal", "deposit", "referral_bonus"],
+    },
   },
 } as const
