@@ -11,7 +11,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { isValidKenyanPhone, normalizePhone } from "@/lib/format";
 
 export const Route = createFileRoute("/register")({
-  validateSearch: (s: Record<string, unknown>) => ({ ref: typeof s.ref === "string" ? s.ref : undefined }),
+  validateSearch: (s: Record<string, unknown>) => ({ ref: typeof s["ref"] === "string" ? s["ref"] : undefined }),
   head: () => ({
     meta: [
       { title: "Create account — KaziPesa" },
@@ -28,13 +28,13 @@ function RegisterPage() {
   const navigate = useNavigate();
   const [f, setF] = useState({ full_name: "", email: "", phone: "", password: "", confirm: "", referral: ref ?? "" });
   const [agree, setAgree] = useState(false);
-  const [errors, setErrors] = useState<Record<string, string>>({});
+  const [errors, setErrors] = useState<Partial<Record<"full_name" | "email" | "phone" | "password" | "confirm" | "agree", string>>>({});
   const [loading, setLoading] = useState(false);
   const set = (k: keyof typeof f) => (e: React.ChangeEvent<HTMLInputElement>) => setF({ ...f, [k]: e.target.value });
 
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
-    const err: Record<string, string> = {};
+    const err: Partial<Record<"full_name" | "email" | "phone" | "password" | "confirm" | "agree", string>> = {};
     if (f.full_name.trim().length < 3) err.full_name = "Enter your full name";
     if (!/^\S+@\S+\.\S+$/.test(f.email)) err.email = "Enter a valid email";
     if (!isValidKenyanPhone(f.phone)) err.phone = "Enter a valid Kenyan number e.g. 0712345678";
@@ -54,7 +54,7 @@ function RegisterPage() {
       },
     });
     setLoading(false);
-    if (error) return toast.error(error.message);
+    if (error) { toast.error(error.message); return; }
     if (data.session) {
       toast.success("Account created");
       await navigate({ to: "/dashboard" });

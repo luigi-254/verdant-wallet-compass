@@ -11,8 +11,8 @@ import { supabase } from "@/integrations/supabase/client";
 
 export const Route = createFileRoute("/login")({
   validateSearch: (s: Record<string, unknown>) => ({
-    redirect: typeof s.redirect === "string" ? s.redirect : undefined,
-    suspended: typeof s.suspended === "string" ? s.suspended : undefined,
+    redirect: typeof s["redirect"] === "string" ? s["redirect"] : undefined,
+    suspended: typeof s["suspended"] === "string" ? s["suspended"] : undefined,
   }),
   head: () => ({
     meta: [
@@ -35,11 +35,11 @@ function LoginPage() {
 
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
-    if (!email || !password) return toast.error("Enter your email and password");
+    if (!email || !password) { toast.error("Enter your email and password"); return; }
     setLoading(true);
     const { error } = await supabase.auth.signInWithPassword({ email: email.trim(), password });
     setLoading(false);
-    if (error) return toast.error(error.message === "Invalid login credentials" ? "Incorrect email or password" : error.message);
+    if (error) { toast.error(error.message === "Invalid login credentials" ? "Incorrect email or password" : error.message); return; }
     const dest = search.redirect && search.redirect.startsWith("/") && !search.redirect.startsWith("//") ? search.redirect : "/dashboard";
     await navigate({ to: dest });
   }
