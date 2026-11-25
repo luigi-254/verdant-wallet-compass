@@ -9,6 +9,8 @@ export const Route = createFileRoute("/privacy")({
       { name: "description", content: "How KaziPesa collects, uses and protects your personal information." },
       { property: "og:title", content: "Privacy Policy — KaziPesa" },
       { property: "og:description", content: "How KaziPesa collects, uses and protects your personal information." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary" },
     ],
   }),
   component: Privacy,

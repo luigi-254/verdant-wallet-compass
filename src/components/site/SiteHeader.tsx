@@ -46,10 +46,10 @@ export function SiteHeader() {
           ) : (
             <>
               <Button variant="ghost" asChild>
-                <Link to="/login">Login</Link>
+                <Link to="/login" search={{ redirect: undefined, suspended: undefined }}>Login</Link>
               </Button>
               <Button asChild>
-                <Link to="/register">Create Account</Link>
+                <Link to="/register" search={{ ref: undefined }}>Create Account</Link>
               </Button>
             </>
           )}
@@ -88,10 +88,10 @@ export function SiteHeader() {
               ) : (
                 <>
                   <Button variant="outline" asChild onClick={() => setOpen(false)}>
-                    <Link to="/login">Login</Link>
+                    <Link to="/login" search={{ redirect: undefined, suspended: undefined }}>Login</Link>
                   </Button>
                   <Button asChild onClick={() => setOpen(false)}>
-                    <Link to="/register">Create Account</Link>
+                    <Link to="/register" search={{ ref: undefined }}>Create Account</Link>
                   </Button>
                 </>
               )}

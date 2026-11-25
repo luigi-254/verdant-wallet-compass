@@ -9,6 +9,8 @@ export const Route = createFileRoute("/terms")({
       { name: "description", content: "The terms that apply to using the KaziPesa task platform." },
       { property: "og:title", content: "Terms & Conditions — KaziPesa" },
       { property: "og:description", content: "The terms that apply to using the KaziPesa task platform." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary" },
     ],
   }),
   component: Terms,

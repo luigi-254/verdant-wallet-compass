@@ -15,6 +15,8 @@ export const Route = createFileRoute("/how-it-works")({
         property: "og:description",
         content: "Register, find tasks, submit your work and withdraw approved earnings by M-Pesa.",
       },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary" },
     ],
   }),
   component: HowItWorks,

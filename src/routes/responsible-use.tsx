@@ -9,6 +9,8 @@ export const Route = createFileRoute("/responsible-use")({
       { name: "description", content: "How to use KaziPesa responsibly and what to expect from online task work." },
       { property: "og:title", content: "Responsible Use — KaziPesa" },
       { property: "og:description", content: "How to use KaziPesa responsibly and what to expect from online task work." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary" },
     ],
   }),
   component: ResponsibleUse,

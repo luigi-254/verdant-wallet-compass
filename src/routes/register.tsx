@@ -18,6 +18,8 @@ export const Route = createFileRoute("/register")({
       { name: "description", content: "Create a free KaziPesa account to start completing online tasks." },
       { property: "og:title", content: "Create account — KaziPesa" },
       { property: "og:description", content: "Join KaziPesa and start completing tasks." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary" },
     ],
   }),
   component: RegisterPage,
@@ -68,7 +70,7 @@ function RegisterPage() {
     <AuthCard
       title="Create your account"
       subtitle="It's free. Complete tasks and track your earnings."
-      footer={<>Already have an account? <Link to="/login" className="font-semibold text-primary">Log in</Link></>}
+      footer={<>Already have an account? <Link to="/login" search={{ redirect: undefined, suspended: undefined }} className="font-semibold text-primary">Log in</Link></>}
     >
       <form onSubmit={onSubmit} className="space-y-4" noValidate>
         <div><Label htmlFor="n">Full name</Label><Input id="n" value={f.full_name} onChange={set("full_name")} className="mt-1.5" /><FieldError msg={errors.full_name} /></div>

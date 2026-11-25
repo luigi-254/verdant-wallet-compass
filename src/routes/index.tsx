@@ -27,6 +27,8 @@ export const Route = createFileRoute("/")({
         property: "og:description",
         content: "Complete simple online tasks, build your earnings and withdraw through M-Pesa.",
       },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary" },
     ],
   }),
   component: Index,
@@ -65,7 +67,7 @@ function Index() {
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Button size="lg" asChild>
-                <Link to="/register">Get Started</Link>
+                <Link to="/register" search={{ ref: undefined }}>Get Started</Link>
               </Button>
               <Button size="lg" variant="secondary" asChild>
                 <Link to="/how-it-works">How It Works</Link>
@@ -148,7 +150,7 @@ function Index() {
             </p>
           </div>
           <Button size="lg" asChild>
-            <Link to="/register">Create Account</Link>
+            <Link to="/register" search={{ ref: undefined }}>Create Account</Link>
           </Button>
         </div>
       </section>

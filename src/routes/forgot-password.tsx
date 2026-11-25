@@ -15,6 +15,8 @@ export const Route = createFileRoute("/forgot-password")({
       { name: "description", content: "Request a password reset link for your KaziPesa account." },
       { property: "og:title", content: "Reset password — KaziPesa" },
       { property: "og:description", content: "Get a password reset link by email." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary" },
     ],
   }),
   component: ForgotPage,
@@ -40,7 +42,7 @@ function ForgotPage() {
     <AuthCard
       title="Forgot your password?"
       subtitle="We'll email you a link to set a new one."
-      footer={<Link to="/login" className="font-semibold text-primary">Back to log in</Link>}
+      footer={<Link to="/login" search={{ redirect: undefined, suspended: undefined }} className="font-semibold text-primary">Back to log in</Link>}
     >
       {sent ? (
         <p className="rounded-lg bg-primary-soft px-4 py-3 text-sm">If an account exists for {email}, a reset link is on its way.</p>

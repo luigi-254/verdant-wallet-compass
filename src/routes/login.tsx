@@ -20,6 +20,8 @@ export const Route = createFileRoute("/login")({
       { name: "description", content: "Log in to your KaziPesa account to complete tasks and manage your wallet." },
       { property: "og:title", content: "Log in — KaziPesa" },
       { property: "og:description", content: "Access your KaziPesa dashboard." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary" },
     ],
   }),
   component: LoginPage,
@@ -48,7 +50,7 @@ function LoginPage() {
     <AuthCard
       title="Welcome back"
       subtitle="Log in to continue to your dashboard."
-      footer={<>New to KaziPesa? <Link to="/register" className="font-semibold text-primary">Create an account</Link></>}
+      footer={<>New to KaziPesa? <Link to="/register" search={{ ref: undefined }} className="font-semibold text-primary">Create an account</Link></>}
     >
       {search.suspended ? (
         <p className="mb-4 rounded-lg bg-destructive/10 px-3 py-2 text-sm text-destructive">

@@ -81,7 +81,11 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     await supabase.auth.signOut();
     setProfile(null);
     setIsAdmin(false);
-    await router.navigate({ to: "/login", replace: true });
+    await router.navigate({
+      to: "/login",
+      search: { redirect: undefined, suspended: undefined },
+      replace: true,
+    });
   }, [queryClient, router]);
 
   const value = useMemo<AuthContextValue>(

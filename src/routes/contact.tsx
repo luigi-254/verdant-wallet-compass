@@ -9,6 +9,8 @@ export const Route = createFileRoute("/contact")({
       { name: "description", content: "Get in touch with the KaziPesa support team." },
       { property: "og:title", content: "Contact — KaziPesa" },
       { property: "og:description", content: "Get in touch with the KaziPesa support team." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary" },
     ],
   }),
   component: Contact,

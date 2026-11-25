@@ -15,6 +15,8 @@ export const Route = createFileRoute("/faq")({
       { name: "description", content: "Answers to common questions about tasks, earnings and M-Pesa withdrawals on KaziPesa." },
       { property: "og:title", content: "FAQ — KaziPesa" },
       { property: "og:description", content: "Common questions about tasks, earnings and withdrawals." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary" },
     ],
   }),
   component: Faq,
